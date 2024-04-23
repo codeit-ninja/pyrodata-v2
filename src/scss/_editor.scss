@@ -1,0 +1,51 @@
+.editor {
+    &--toolbar {
+        background-color: $white;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        display: flex;
+        border-bottom: 1px solid $gray-400;
+        z-index: 5;
+
+        &--group {
+            display: flex;
+            border-right: 1px solid $gray-400;
+
+            + .editor--toolbar--group {
+                button:not(.btn) {
+                    :first-child {
+                        padding-left: .55rem;
+                    }
+                }
+            }
+
+            &:last-of-type {
+                border-right: 0;
+            }
+        }
+
+        button:not(.btn) {
+            display: flex;
+            padding: .55rem .15rem .55rem 0;
+            justify-content: center;
+            align-items: center;
+
+            &:hover {
+                color: $primary;
+            }
+
+            &:last-child {
+                padding-right: .55rem;
+            }
+
+            + button {
+                padding: .55rem .15rem;
+            }
+        }
+    }
+
+    .tiptap {
+        outline: none;
+    }
+}

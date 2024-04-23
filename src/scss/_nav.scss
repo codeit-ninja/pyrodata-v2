@@ -1,0 +1,16 @@
+.nav {
+    &-link {
+        color: $body-color;
+        border-radius: 5px;
+
+        &.active {
+            background-color: tint-color($dark, 75%);
+            color: $primary;
+            font-weight: 600;
+        }
+
+        &:hover {
+            background-color: tint-color($dark, 80%);
+        }
+    }
+}

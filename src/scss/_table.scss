@@ -1,0 +1,13 @@
+table {
+    @extend .table;
+
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.ProseMirror {
+    table {
+        @extend .table-bordered;
+    }
+}

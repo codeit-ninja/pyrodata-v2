@@ -1,0 +1,83 @@
+@import "ninjabootstrap/scss/variables";
+@import '@fontsource-variable/exo-2';
+@import '@fontsource-variable/karla';
+
+$font-family-sans-serif:   'Karla Variable', sans-serif;
+
+$primary:                   #00aebb;
+$gray:                      #AAB8C2;
+$dark:                      #3D4856;
+$light:                     #DCF6F3;
+
+$link-color:                $primary;
+
+$border-radius:             .3rem;
+$border-color:              $gray-500;
+
+$input-padding-x:           1.35rem;
+$input-padding-y:           .45rem;
+
+$nav-link-padding-y:        .35rem;
+$nav-link-padding-x:        .75rem;
+
+$spacer: 1rem;
+$spacers: (
+    0: 0,
+    1: ($spacer * .25),
+    2: ($spacer * .5),
+    3: ($spacer * .75),
+    4: ($spacer * 1),
+    5: ($spacer * 1.25),
+    6: ($spacer * 1.5),
+    7: ($spacer * 1.75),
+    8: ($spacer * 2),
+    9: ($spacer * 2.25),
+    10: ($spacer * 2.5),
+    11: ($spacer * 2.75),
+    12: ($spacer * 3),
+    13: ($spacer * 3.25),
+    14: ($spacer * 3.5),
+    15: ($spacer * 3.75),
+    16: ($spacer * 4),
+    17: ($spacer * 4.25),
+    18: ($spacer * 4.5),
+    19: ($spacer * 4.75),
+    20: ($spacer * 5)
+);
+
+$font-sizes: (
+    1: $h1-font-size,   // 22.75px
+    2: $h2-font-size,   // 19.50px
+    3: $h3-font-size,   // 17.55px
+    4: $h4-font-size,   // 16.25px
+    5: $h5-font-size,   // 14.95px
+    6: $h6-font-size,   // 13.95px
+
+    7: $font-size-base * 0.95,  // 12.35px
+    8: $font-size-base * 0.85,  // 11.05px
+    9: $font-size-base * 0.75,  // 9.75px
+    10: $font-size-base * 0.5,  // 6.50px
+
+    base: $font-size-base, // 13px
+    fluid: 100%, // 100%
+
+    2x: $font-size-base * 2,        // 26px
+    2qx: $font-size-base * 2.25,    // 29.25px
+    2hx: $font-size-base * 2.5,     // 32.5px
+    2tx: $font-size-base * 2.75,    // 35.75px
+
+    3x: $font-size-base * 3,        // 39px
+    3qx: $font-size-base * 3.25,    // 42.25px
+    3hx: $font-size-base * 3.5,     // 45.5px
+    3tx: $font-size-base * 3.75,    // 48.75px
+
+    4x: $font-size-base * 4,        // 52px
+    4qx: $font-size-base * 4.25,    // 55.25px
+    4hx: $font-size-base * 4.5,     // 58.5px
+    4tx: $font-size-base * 4.75,    // 61.75px
+
+    5x: $font-size-base * 5,        // 65px
+    5qx: $font-size-base * 5.25,    // 68.25px
+    5hx: $font-size-base * 5.5,     // 71.5px
+    5tx: $font-size-base * 5.75     // 74.75px
+);

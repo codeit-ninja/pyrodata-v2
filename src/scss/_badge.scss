@@ -1,0 +1,19 @@
+.badge {
+    display:  inline-block;
+
+    &--verified {
+        color: $green-400;
+    }
+
+    &--beginner {
+        color: $gray-500;
+    }
+
+    &--danger {
+        color: $danger;
+    }
+
+    &--expert {
+        color: $yellow-500;
+    }
+}

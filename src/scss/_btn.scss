@@ -1,0 +1,23 @@
+@use 'sass:color';
+
+button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    user-select: none;
+}
+
+.btn {
+    color: inherit;
+    background-color: transparent;
+    border: none;
+    padding: $input-padding-y $input-padding-x;
+    border-radius: $border-radius;
+
+    &-primary {
+        color: $white;
+        background-color: $primary;
+        border: 1px solid shade-color($primary, 15%);
+        border-bottom: 3px solid shade-color($primary, 15%);
+    }
+}

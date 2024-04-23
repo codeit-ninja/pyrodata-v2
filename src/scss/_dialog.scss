@@ -1,0 +1,32 @@
+.dialog {
+    border: none;
+    border-radius: $border-radius;
+    padding: 3rem;
+    border: 1px solid $gray-400;
+
+    &::backdrop {
+        background-color: $gray-300;
+    }
+
+    &--header {
+        display: flex;
+        margin-bottom: 2rem;
+        
+        h3 {
+            font-weight: 700;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+        }
+    }
+
+    &--sm {
+        width: 450px;
+    }
+
+    &--close {
+        position: fixed;
+        top: 2rem;
+        right: 2rem;
+        font-size: 3rem;
+    }
+}
