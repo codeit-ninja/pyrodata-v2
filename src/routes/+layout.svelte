@@ -14,7 +14,7 @@
 </script>
 <div class="site min-vh-100 d-flex flex-column">
     <div class="site--header">
-        <div class="container-xl">
+        <div class="container-xxl">
             <div class="row align-items-center">
                 <div class="col-4">
                     <span class="site--logo fw-bold fs-1">DUNNO YET</span>
@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="site--body flex-grow-1 d-flex">
-        <div class="container-xl d-flex flex-grow-1">
+        <div class="container-xxl d-flex flex-grow-1">
             <div class="site--sidebar w-25">
                 <SiteNavBar />
             </div>

@@ -13,11 +13,26 @@ button {
     border: none;
     padding: $input-padding-y $input-padding-x;
     border-radius: $border-radius;
+    text-decoration: none;
 
     &-primary {
         color: $white;
         background-color: $primary;
         border: 1px solid shade-color($primary, 15%);
         border-bottom: 3px solid shade-color($primary, 15%);
+    }
+
+    &-secondary {
+        color: $white;
+        background-color: $secondary;
+        border: 1px solid shade-color($secondary, 15%);
+        border-bottom: 3px solid shade-color($secondary, 15%);
+    }
+
+    &-dark {
+        color: $white;
+        background-color: $gray-300;
+        border: 1px solid shade-color($gray-300, 15%);
+        border-bottom: 3px solid shade-color($gray-300, 15%);
     }
 }

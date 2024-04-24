@@ -2,6 +2,7 @@ import { db } from "$lib/db"
 
 export const load = async () => {
     const compositions = await db.composition.findMany({
+        take: 50,
         include: {
             categories: true,
             ingredients: {

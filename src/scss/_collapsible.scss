@@ -1,0 +1,14 @@
+.collapsible {
+    $this: &;
+
+    &--header {
+        margin-bottom: 1rem;
+        cursor: pointer;
+    }
+
+    &[aria-expanded=false] {
+        #{$this}--body {
+            display: none;
+        }
+    }
+}

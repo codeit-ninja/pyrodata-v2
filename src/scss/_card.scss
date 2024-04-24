@@ -22,18 +22,18 @@
     }
 
     &--composition {
-        --card-composition-bg: var(--bs-neutral-200);
+        --card-composition-bg: var(--bs-white);
 
         background-color: var(--card-composition-bg);
-        border-color: var(--bs-neutral-600);
+        border-color: var(--bs-gray-400);
 
         #{$this}-header {
-            background-color: var(--bs-neutral-900);
+            background-color: var(--card-composition-bg);
             font-weight: bold;
             border-bottom: 0;
 
             a {
-                color: var(--bs-gray-100);
+                color: var(--bs-gray-500);
                 text-decoration: none;
                 border-bottom: none;
             }

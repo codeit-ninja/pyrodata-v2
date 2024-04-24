@@ -2,10 +2,13 @@
     overflow-x: clip;
 
     &--header {
-        border-top: 3px solid #FF6DB5;
-        color: var(--bs-white);
-        background-color: var(--bs-neutral-900);
-        border-bottom: 1px solid $gray-400;
+        position: sticky;
+        top: 0;
+        border-top: 3px solid $secondary;
+        color: var(--bs-dark);
+        background-color: var(--bs-white);
+        border-bottom: 1px solid $border-color;
+        z-index: 99;
 
         &--search {
             .form-control {
@@ -23,15 +26,15 @@
 
     &--sidebar {
         position: relative;
-        background-color: $gray-300;
-        border-right: 1px solid $gray-400;
+        background-color: $white;
+        border-right: 1px solid $border-color;
         padding: 1.5rem 1.5rem 0 0;
         min-width: 250px;
         max-width: 250px;
         z-index: 10;
         
         &::before {
-            background-color: $gray-300;
+            background-color: $white;
             position: absolute;
             content: " ";
             width: 10000px;
