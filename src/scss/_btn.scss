@@ -7,7 +7,7 @@ button {
     user-select: none;
 }
 
-.btn {
+.btn {    
     color: inherit;
     background-color: transparent;
     border: none;
@@ -16,23 +16,44 @@ button {
     text-decoration: none;
 
     &-primary {
-        color: $white;
-        background-color: $primary;
-        border: 1px solid shade-color($primary, 15%);
-        border-bottom: 3px solid shade-color($primary, 15%);
+        color: $dark;
+        background-color: var(--bs-primary);
     }
 
     &-secondary {
         color: $white;
         background-color: $secondary;
-        border: 1px solid shade-color($secondary, 15%);
-        border-bottom: 3px solid shade-color($secondary, 15%);
     }
 
     &-dark {
-        color: $white;
-        background-color: $gray-300;
-        border: 1px solid shade-color($gray-300, 15%);
-        border-bottom: 3px solid shade-color($gray-300, 15%);
+        background-color: var(--bs-gray-850);
+        border-color: var(--bs-gray-700);
+    }
+
+    &-outline {
+        &-primary {
+            border-color: $primary;
+            color: $primary;
+        }
+
+        &-secondary {
+            border-color: $secondary;
+            color: $secondary;
+        }
+
+        &-dark {
+            border-color: $gray;
+            color: $gray;
+        }
+
+        &-light {
+            border-color: var(--bs-gray-000);
+        }
+    }
+
+    &[class*="btn-outline-"] {
+        border-width: 1px;
+        border-style: solid;
+        border-bottom-width: 1px;
     }
 }

@@ -1,11 +1,11 @@
-import { isEmpty, omitBy } from "lodash-es";
+import { omitBy, isEmpty, isNil } from "lodash-es";
 import type { ZodFormattedError } from "zod";
 
-export const get = async <T>(url: RequestInfo | URL, data?: T): Promise<[unknown, ZodFormattedError<T> | null]> => {
+export const get = async <T extends unknown, E extends unknown = unknown>(url: RequestInfo | URL, data?: E): Promise<[T, ZodFormattedError<E> | null]> => {
     let queryString: string = '';
 
     if (data) {
-        queryString = `?` + new URLSearchParams(omitBy(data, isEmpty)).toString();
+        queryString = `?` + new URLSearchParams(omitBy(data, isNil)).toString();
     }
     
     try {

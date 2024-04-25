@@ -23,10 +23,10 @@
 <div class="page">
     <div class="page--title d-flex align-items-center">
         <h1>Compositions</h1>
-        <a href="/compositions/create" role="button" class="btn btn-dark ms-auto">Submit a composition</a>
+        <a href="/compositions/create" role="button" class="btn btn-secondary ms-auto">Submit a new composition</a>
     </div>
     <div class="page--content d-flex">
-        <section class="page--content--filters">
+        <section class="page--content--sidebar page--content--sidebar--left">
             <form onchange={applyFilters} onsubmit={applyFilters}>
                 <h5 class="mb-4">Filters</h5>
                 <div class="mb-7">

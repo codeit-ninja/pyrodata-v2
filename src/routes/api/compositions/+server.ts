@@ -23,7 +23,7 @@ export const GET = async ({ url }) => {
                 every: {
                     id: searchParams.type
                 }
-            }
+            },
         },
         include: {
             ingredients: {
@@ -42,11 +42,19 @@ export const GET = async ({ url }) => {
 
     // TODO: Can do this with prisma SDK? I haven't been able to do so yet ..
     if (searchParams.contains) {
-        result = compositions.filter(composition =>
-            composition.ingredients.some(ingredient =>
-                ingredient.page?.chemical?.id && searchParams.contains!.split(',').includes(ingredient.page.chemical.id)
-            )
-        );
+        result = compositions.filter( composition => {
+            return searchParams.contains?.split(',').every(id => {
+                for(const ingredient of composition.ingredients) {
+                    if(!ingredient.page?.chemical?.id) {
+                        continue;
+                    }
+    
+                    if(ingredient.page.chemical.id === id) {
+                        return true;
+                    }
+                }
+            })
+        })
     }    
     
     return json(result);

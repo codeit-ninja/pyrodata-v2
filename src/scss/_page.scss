@@ -5,15 +5,14 @@
 
     &--title {
         position: relative;
-        background-color: var(--bs-neutral-200);
+        background-color: $gray-800;
         padding: 5rem 0 1.5rem 3rem;
         border-bottom: 1px solid $border-color;
-        color: $gray-800;
         z-index: 10;
 
         &::after {
             position: absolute;
-            background-color: var(--bs-neutral-200);
+            background-color: $gray-800;
             display: block;
             content: " ";
             width: 10000px;
@@ -24,130 +23,26 @@
         }
     }
 
+    &--box {
+        background-color: var(--bs-gray-850);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 1rem;
+        padding: 1.5rem;
+    }
+    
     &--content {
         flex-grow: 1;
+        margin-left: 3rem;
+        margin-top: 1.5rem;
+        z-index: 55;
 
-        article {
-            position: relative;
-            padding: 2rem 0 0 3rem;
-            border-right: 1px solid $gray-400;
-            z-index: 5;
-        }
+        &--sidebar {
+            min-width: 300px;
+            max-width: 300px;
+            align-self: flex-start;
 
-        section {
-            padding: 2rem 0 0 3rem;
-
-            &.page--content--filters {
-                padding-right: 3rem;
-            }
-        }
-
-        &:has(.editor) {
-            article {
-                padding: 0;
-            }
-
-            .editor {
-                &--toolbar {
-                    padding-inline-start: 3rem;
-                }
-
-                .tiptap {
-                    padding: 1rem 3rem;
-                }
-            }
-        }
-
-        &:has(aside) {
-            display: flex;
-
-            article {
-                padding: 2rem 2rem 0 3rem;
-            }
-
-            aside {
-                font-size: .8rem;
-                display: flex;
-                flex-direction: column;
-                min-width: 280px;
-                max-width: 280px;
-
-                .widget {
-                    margin: 1.5rem 0 0 1.5rem;
-                }
-                
-                picture {
-                    display: block;
-
-                    img {
-                        width: 100%;
-                    }
-                }
-    
-                table {
-                    td {
-                        font-weight: 500;
-                        text-transform: uppercase;
-                        padding: .35rem 0;
-                    }
-    
-                    td + td {
-                        text-transform: none;
-                        font-weight: 400;
-                    }
-                }
-
-                h4 {
-                    color: $gray-600;
-                    font-weight: 700;
-                    font-size: 1rem;
-                    text-transform: uppercase;
-                }
-            }
-        }
-
-        &--filters {
-            min-width: 320px;
-            max-width: 320px;
-            border-right: 1px solid $border-color;
-
-            h6 {
-                font-weight: 700;
-            }
-        }
-    }
-
-    &--meta {
-        margin-top: 1rem;
-        color: var(--bs-neutral-400);
-    }
-
-    article {
-        aside {
-            border-left: 1px solid $border-color;
-            float: right;
-            width: 250px;
-            margin-left: 3rem;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-
-            picture {
-                display: block;
-                margin-bottom: 2rem;
-            }
-
-            table {
-                td {
-                    font-weight: 500;
-                    font-size: .8rem;
-                    text-transform: uppercase;
-                    padding: .25rem .5rem;
-                }
-
-                td + td {
-                    text-transform: none;
-                    font-weight: 400;
-                }
+            &--left {
+                margin-right: 1.5rem;
             }
         }
     }

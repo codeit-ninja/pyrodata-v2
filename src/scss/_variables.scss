@@ -1,13 +1,7 @@
-@import "ninjabootstrap/scss/variables";
 @import '@fontsource-variable/exo-2';
 @import '@fontsource-variable/karla';
 
 $font-family-sans-serif:   'Karla Variable', sans-serif;
-
-$primary:                   #0087e0;
-$secondary:                 #EB5E28;
-$dark:                      #00171F;
-$light:                     #DCF6F3;
 
 $neutral: #737373;
 $neutral-100: tint-color($neutral, 80%);
@@ -20,27 +14,74 @@ $neutral-700: shade-color($neutral, 40%);
 $neutral-800: shade-color($neutral, 60%);
 $neutral-900: shade-color($neutral, 80%);
 
-$gray: #2A2D34;
-$gray-100: tint-color($gray, 80%);
-$gray-200: tint-color($gray, 60%);
-$gray-300: tint-color($gray, 40%);
-$gray-400: tint-color($gray, 20%);
-$gray-500: $gray;
-$gray-600: shade-color($gray, 20%);
-$gray-700: shade-color($gray, 40%);
-$gray-800: shade-color($gray, 60%);
-$gray-900: shade-color($gray, 80%);
+$gray: #6b6b6e;
+$gray-000: tint-color(#19191d, 45%);
+$gray-050: tint-color(#19191d, 42%);
+$gray-100: tint-color(#19191d, 40%);
+$gray-150: tint-color(#19191d, 37%);
+$gray-200: tint-color(#19191d, 35%);
+$gray-250: tint-color(#19191d, 32%);
+$gray-300: tint-color(#19191d, 30%);
+$gray-350: tint-color(#19191d, 27%);
+$gray-400: tint-color(#19191d, 25%);
+$gray-450: tint-color(#19191d, 22%);
+$gray-500: tint-color(#19191d, 20%);
+$gray-550: tint-color(#19191d, 17%);
+$gray-600: tint-color(#19191d, 15%);
+$gray-650: tint-color(#19191d, 12%);
+$gray-700: tint-color(#19191d, 10%);
+$gray-750: tint-color(#19191d, 7%);
+$gray-800: tint-color(#19191d, 5%);
+$gray-850: tint-color(#19191d, 2%);
+$gray-900: tint-color(#19191d, 0%);
+
+$grays: (
+  "000": $gray-000,
+  "050": $gray-050,
+  "100": $gray-100,
+  "150": $gray-150,
+  "200": $gray-200,
+  "250": $gray-250,
+  "300": $gray-300,
+  "350": $gray-350,
+  "400": $gray-400,
+  "450": $gray-450,
+  "500": $gray-500,
+  "550": $gray-550,
+  "600": $gray-600,
+  "650": $gray-650,
+  "700": $gray-700,
+  "750": $gray-750,
+  "800": $gray-800,
+  "850": $gray-850,
+  "900": $gray-900
+);
+
+$white:                     #fff;
+$dark:                      #19191d;
+$primary:                   #ffe0ad;
+$secondary:                 tint-color(#19191d, 15%);
+$light:                     $gray-000;
 
 $link-color:                $primary;
 
+$body-bg:                   $gray-900;
+$body-color:                $white;
+
 $border-radius:             .3rem;
-$border-color:              $gray-100;
+$border-color:              $gray-700;
 
 $input-padding-x:           1rem;
 $input-padding-y:           .45rem;
+$input-border-color:        $gray-000;
+$input-placeholder-color:   $gray-000;
 
 $nav-link-padding-y:        .35rem;
 $nav-link-padding-x:        .75rem;
+
+$tooltip-color:             $body-color;
+$tooltip-bg:                #000;
+$tooltip-border-radius:     $border-radius;
 
 $spacer: 1rem;
 $spacers: (
@@ -65,50 +106,4 @@ $spacers: (
     18: ($spacer * 4.5),
     19: ($spacer * 4.75),
     20: ($spacer * 5)
-);
-
-$font-sizes: (
-    1: $h1-font-size,   // 22.75px
-    2: $h2-font-size,   // 19.50px
-    3: $h3-font-size,   // 17.55px
-    4: $h4-font-size,   // 16.25px
-    5: $h5-font-size,   // 14.95px
-    6: $h6-font-size,   // 13.95px
-
-    7: $font-size-base * 0.95,  // 12.35px
-    8: $font-size-base * 0.85,  // 11.05px
-    9: $font-size-base * 0.75,  // 9.75px
-    10: $font-size-base * 0.5,  // 6.50px
-
-    base: $font-size-base, // 13px
-    fluid: 100%, // 100%
-
-    2x: $font-size-base * 2,        // 26px
-    2qx: $font-size-base * 2.25,    // 29.25px
-    2hx: $font-size-base * 2.5,     // 32.5px
-    2tx: $font-size-base * 2.75,    // 35.75px
-
-    3x: $font-size-base * 3,        // 39px
-    3qx: $font-size-base * 3.25,    // 42.25px
-    3hx: $font-size-base * 3.5,     // 45.5px
-    3tx: $font-size-base * 3.75,    // 48.75px
-
-    4x: $font-size-base * 4,        // 52px
-    4qx: $font-size-base * 4.25,    // 55.25px
-    4hx: $font-size-base * 4.5,     // 58.5px
-    4tx: $font-size-base * 4.75,    // 61.75px
-
-    5x: $font-size-base * 5,        // 65px
-    5qx: $font-size-base * 5.25,    // 68.25px
-    5hx: $font-size-base * 5.5,     // 71.5px
-    5tx: $font-size-base * 5.75     // 74.75px
-);
-
-$grid-breakpoints: (
-    xs: 0,
-    sm: 576px,
-    md: 768px,
-    lg: 992px,
-    xl: 1200px,
-    xxl: 1560px
 );

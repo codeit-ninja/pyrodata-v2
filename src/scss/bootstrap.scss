@@ -10,8 +10,10 @@
 @import "ninjabootstrap/scss/maps";
 @import "ninjabootstrap/scss/mixins";
 @import "ninjabootstrap/scss/root";
-
 @import "ninjabootstrap/scss/utilities";
+
+@import "utilities";
+
 @import "ninjabootstrap/scss/alert";
 @import "ninjabootstrap/scss/reboot";
 @import "ninjabootstrap/scss/card";
@@ -19,6 +21,7 @@
 @import "ninjabootstrap/scss/images";
 @import "ninjabootstrap/scss/dropdown";
 @import "ninjabootstrap/scss/containers";
+@import "ninjabootstrap/scss/tooltip";
 @import "ninjabootstrap/scss/nav";
 @import "ninjabootstrap/scss/grid";
 @import "ninjabootstrap/scss/forms";

@@ -7,10 +7,21 @@
     import HeaderSearchSection from '$lib/components/site/HeaderSearchSection.svelte';
     import SiteNavBar from '$lib/components/site/SiteNavBar.svelte';
     import { useAuthStore } from '$lib/stores/auth.svelte.js';
+    import { onMount } from 'svelte';
 
     const { children, data } = $props();
 
     useAuthStore.session = data.session;
+
+    onMount( async () => {
+        const { Tooltip, Dropdown } = await import('bootstrap');
+
+        const dropdownElementList = document.querySelectorAll('.dropdown-toggle, .dropdown-open');
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        
+        [...tooltipTriggerList].forEach(tooltipTriggerEl => new Tooltip(tooltipTriggerEl));
+        [...dropdownElementList].forEach(dropdownToggleEl => new Dropdown(dropdownToggleEl));
+    })
 </script>
 <div class="site min-vh-100 d-flex flex-column">
     <div class="site--header">

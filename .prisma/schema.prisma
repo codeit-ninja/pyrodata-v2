@@ -2,73 +2,85 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 generator zod {
-  provider = "npx zod-prisma-types"
+    provider                         = "npx zod-prisma-types"
+    useMultipleFiles                 = true // default is false
+    createOptionalDefaultValuesTypes = true // default is false
+    createRelationValuesTypes        = true // default is false
+    createPartialTypes               = true // default is false
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
 model User {
-  id        String   @id @default(cuid())
-  username  String   @unique
-  password  String
-  email     String   @unique
-  role      Role     @default(USER)
-  session   Session?
+    id           String        @id @default(cuid())
+    username     String        @unique
+    password     String
+    email        String        @unique
+    role         Role          @default(USER)
+    session      Session?
+    files        File[]
+    pages        Page[]
+    compositions Composition[]
 }
 
 model Session {
-    id      String  @id @default(uuid())
-    user    User    @relation(fields: [userId], references: [id])
-    userId  String  @unique
+    id     String @id @default(uuid())
+    user   User   @relation(fields: [userId], references: [id])
+    userId String @unique
 }
 
 enum Role {
-  USER
-  EDITOR
-  ADMIN
+    USER
+    EDITOR
+    ADMIN
 }
 
 model File {
-  id          String        @id @default(cuid())
-  name        String        @unique
-  title       String
-  description String?
-  mimeType    String?
-  imageWidget ImageWidget[]
-  page        Page[]
-  composition Composition[]
+    id          String        @id @default(cuid())
+    name        String        @unique
+    title       String
+    description String?
+    mimeType    String?
+    imageWidget ImageWidget[]
+    page        Page[]
+    composition Composition[]
+    user        User?         @relation(fields: [userId], references: [id])
+    userId      String?
 }
 
 model Ingredient {
-    id              String  @id @default(cuid())
-    amount          Float
-    name            String
-    note            String?
-    composition     Composition @relation(fields: [compositionId], references: [id])
-    compositionId   String
-    page            Page?   @relation(fields: [pageId], references: [id])
-    pageId          String?
+    id            String      @id @default(cuid())
+    amount        Float
+    name          String
+    note          String?
+    composition   Composition @relation(fields: [compositionId], references: [id])
+    compositionId String
+    page          Page?       @relation(fields: [pageId], references: [id])
+    pageId        String?
 }
 
 model Composition {
-  id            String          @id @default(cuid())
-  name          String          @unique
-  description   String?         @db.Text
-  video         File?           @relation(fields: [videoId], references: [id])
-  videoId       String?
-  ingredients   Ingredient[]
-  categories    CompositionCategory[]
+    id          String                @id @default(cuid())
+    name        String                @unique
+    description String?               @db.Text
+    video       File?                 @relation(fields: [videoId], references: [id])
+    videoId     String?
+    ingredients Ingredient[]
+    categories  CompositionCategory[]
+    badges      CompositionBadges[]
+    submittedBy User?                 @relation(fields: [userId], references: [id])
+    userId      String?
 }
 
 model CompositionBadge {
-    id          Int          @id @default(autoincrement())
+    id Int @id @default(autoincrement())
 }
 
 enum CompositionBadges {
@@ -77,78 +89,79 @@ enum CompositionBadges {
     EXPERT
     FAVORITE
     BEGINNER_FRIENDLY
-    
 }
 
 model CompositionCategory {
-  id            String       @id @default(cuid())
-  name          String       @unique
-  slug          String       @unique
-  compositions  Composition[]
+    id           String        @id @default(cuid())
+    name         String        @unique
+    slug         String        @unique
+    compositions Composition[]
 }
 
 model HazardSymbols {
-  id        String     @id @default(cuid())
-  name      String     @unique
-  symbol    String
-  chemicals Chemical[]
+    id        String     @id @default(cuid())
+    name      String     @unique
+    symbol    String
+    chemicals Chemical[]
 }
 
 model Chemical {
-  id            String          @id @default(cuid())
-  name          String          @unique
-  formula       String?
-  hazards       HazardSymbols[]
-  page          Page            @relation(fields: [pageId], references: [id])
-  pageId        String          @unique
+    id      String          @id @default(cuid())
+    name    String          @unique
+    formula String?
+    hazards HazardSymbols[]
+    page    Page            @relation(fields: [pageId], references: [id])
+    pageId  String          @unique
 }
 
 model Page {
-  id                String      @id @default(cuid())
-  title             String      @unique
-  slug              String      @unique
-  featuredImage     File?       @relation(fields: [featuredImageId], references: [id])
-  featuredImageId   String?
-  content           PageContent @relation(fields: [pageContentId], references: [id])
-  pageContentId     String
-  categorySlug      String?
-  category          Category?   @relation(fields: [categorySlug], references: [slug])
-  createdAt         DateTime    @default(now())
-  updatedAt         DateTime    @default(now()) @updatedAt
-  chemical          Chemical?
-  ingredients       Ingredient[]
+    id              String       @id @default(cuid())
+    title           String       @unique
+    slug            String       @unique
+    featuredImage   File?        @relation(fields: [featuredImageId], references: [id])
+    featuredImageId String?
+    content         PageContent  @relation(fields: [pageContentId], references: [id])
+    pageContentId   String
+    categorySlug    String?
+    category        Category?    @relation(fields: [categorySlug], references: [slug])
+    createdAt       DateTime     @default(now())
+    updatedAt       DateTime     @default(now()) @updatedAt
+    chemical        Chemical?
+    ingredients     Ingredient[]
+    user            User?        @relation(fields: [userId], references: [id])
+    userId          String?
 }
 
 model Category {
-  title String @unique
-  slug  String @unique
-  page  Page[]
+    title String @unique
+    slug  String @unique
+    page  Page[]
 }
 
 model PageContent {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  html      String   @default("") @db.Text
-  page      Page[]
-  sidebar   Boolean  @default(false)
-  widgets   Widget[]
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    html      String   @default("") @db.Text
+    page      Page[]
+    sidebar   Boolean  @default(false)
+    widgets   Widget[]
 }
 
 model Widget {
-  id            String       @id @default(cuid())
-  pageContentId String
-  pageContent   PageContent  @relation(fields: [pageContentId], references: [id])
-  imageWidget   ImageWidget?
+    id            String       @id @default(cuid())
+    pageContentId String
+    pageContent   PageContent  @relation(fields: [pageContentId], references: [id])
+    imageWidget   ImageWidget?
 }
 
 model ImageWidget {
-  id       String @id @default(cuid())
-  widgets  Widget @relation(fields: [widgetId], references: [id])
-  widgetId String @unique
-  file     File   @relation(fields: [fileId], references: [id])
-  fileId   String
+    id       String @id @default(cuid())
+    widgets  Widget @relation(fields: [widgetId], references: [id])
+    widgetId String @unique
+    file     File   @relation(fields: [fileId], references: [id])
+    fileId   String
 }
 
 model EditorWidget {
-  id Int @id @default(autoincrement())
+    id Int @id @default(autoincrement())
 }

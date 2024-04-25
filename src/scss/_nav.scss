@@ -4,13 +4,14 @@
         border-radius: 5px;
 
         &.active {
-            background-color: var(--bs-gray-300);
-            color: $primary;
+            background-color: var(--bs-gray-800);
+            color: $white;
             font-weight: 600;
         }
 
         &:hover {
-            background-color: var(--bs-gray-200);
+            background-color: var(--bs-gray-800);
+            color: $white;
         }
     }
 }

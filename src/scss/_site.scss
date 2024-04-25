@@ -5,8 +5,7 @@
         position: sticky;
         top: 0;
         border-top: 3px solid $secondary;
-        color: var(--bs-dark);
-        background-color: var(--bs-white);
+        background-color: var(--bs-gray-900);
         border-bottom: 1px solid $border-color;
         z-index: 99;
 
@@ -14,7 +13,6 @@
             .form-control {
                 color: inherit;
                 background-color: transparent;
-                border: 1px solid var(--bs-dark);
             }
         }
     }
@@ -26,7 +24,6 @@
 
     &--sidebar {
         position: relative;
-        background-color: $white;
         border-right: 1px solid $border-color;
         padding: 1.5rem 1.5rem 0 0;
         min-width: 250px;
@@ -34,7 +31,6 @@
         z-index: 10;
         
         &::before {
-            background-color: $white;
             position: absolute;
             content: " ";
             width: 10000px;
