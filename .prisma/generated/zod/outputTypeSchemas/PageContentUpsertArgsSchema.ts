@@ -14,9 +14,10 @@ import { PageContentCountOutputTypeArgsSchema } from "../outputTypeSchemas/PageC
 
 export const PageContentSelectSchema: z.ZodType<Prisma.PageContentSelect> = z.object({
   id: z.boolean().optional(),
-  createdAt: z.boolean().optional(),
   html: z.boolean().optional(),
   sidebar: z.boolean().optional(),
+  createdAt: z.boolean().optional(),
+  updatedAt: z.boolean().optional(),
   page: z.union([z.boolean(),z.lazy(() => PageFindManyArgsSchema)]).optional(),
   widgets: z.union([z.boolean(),z.lazy(() => WidgetFindManyArgsSchema)]).optional(),
   _count: z.union([z.boolean(),z.lazy(() => PageContentCountOutputTypeArgsSchema)]).optional(),

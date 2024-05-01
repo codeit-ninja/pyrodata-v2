@@ -15,10 +15,7 @@
 
         const formData = new FormData(e.currentTarget);
 
-        const username = formData.get('username') as string;
-        const password = formData.get('password') as string;
-
-        const [data, err] = await authStore.login(username, password);
+        const [data, err] = await authStore.login(formData);
         
         error = err ?? undefined;
         
@@ -31,25 +28,25 @@
         }
     }
 
-    let error = $state<{ _errors: string[], username?: { _errors: string[] }, password?: { _errors: string[] } }>();
+    let error = $state<{ message?: string, username: { message: string }, password: { message: string } }>();
 </script>
 <form method="post" onsubmit={onSubmit}>
     <div class="mb-3">
         <input type="text" class="form-control" placeholder="Username or email" name="username" />
         {#if error?.username}
-            <span class="d-block text-danger mt-1 fw-medium">{error.username._errors}</span>
+            <span class="d-block text-danger mt-1 fw-medium">{error.username.message}</span>
         {/if}
     </div>
     <div class="mb-3">
         <input type="password" class="form-control" placeholder="********" name="password" />
         {#if error?.password}
-            <span class="d-block text-danger mt-1 fw-medium">{error.password._errors}</span>
+            <span class="d-block text-danger mt-1 fw-medium">{error.password.message}</span>
         {/if}
     </div>
     <div class="d-flex flex-column gap-2 align-items-center">
         <button class="btn btn-primary w-100">Submit</button>
-        {#if error?._errors}
-            <span class="text-danger mt-1 fw-medium">{error._errors}</span>
+        {#if error?.message}
+            <span class="text-danger mt-1 fw-medium">{error.message}</span>
         {/if}
     </div>
 </form>

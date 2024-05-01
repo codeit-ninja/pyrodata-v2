@@ -24,11 +24,11 @@ export const get = async <T extends unknown, E extends unknown = unknown>(url: R
     }
 }
 
-export const post = async <T>(url: RequestInfo | URL, data?: T): Promise<[App.Locals['session'] | null, ZodFormattedError<T> | null]> => {
+export const post = async <T>(url: RequestInfo | URL, data?: T): Promise<[App.Locals['session'] | null, ZodFormattedError<T> | null]> => {    
     try {
         const request = await fetch(url, {
             method: 'POST',
-            body: JSON.stringify(data)
+            body: (data instanceof FormData) ? data : JSON.stringify(data)
         });
 
         const response = await request.json();

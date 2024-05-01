@@ -9,9 +9,9 @@ export const PageCreateManyInputSchema: z.ZodType<Prisma.PageCreateManyInput> = 
   featuredImageId: z.string().optional().nullable(),
   pageContentId: z.string(),
   categorySlug: z.string().optional().nullable(),
+  userId: z.string().optional().nullable(),
   createdAt: z.coerce.date().optional(),
-  updatedAt: z.coerce.date().optional(),
-  userId: z.string().optional().nullable()
+  updatedAt: z.coerce.date().optional()
 }).strict();
 
 export default PageCreateManyInputSchema;

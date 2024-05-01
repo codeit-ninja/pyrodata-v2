@@ -1,16 +1,16 @@
 import { z } from 'zod';
-import type { CompositionWithRelations } from './CompositionSchema'
-import type { CompositionPartialWithRelations } from './CompositionSchema'
-import type { CompositionOptionalDefaultsWithRelations } from './CompositionSchema'
 import type { PageWithRelations } from './PageSchema'
 import type { PagePartialWithRelations } from './PageSchema'
 import type { PageOptionalDefaultsWithRelations } from './PageSchema'
-import { CompositionWithRelationsSchema } from './CompositionSchema'
-import { CompositionPartialWithRelationsSchema } from './CompositionSchema'
-import { CompositionOptionalDefaultsWithRelationsSchema } from './CompositionSchema'
+import type { CompositionWithRelations } from './CompositionSchema'
+import type { CompositionPartialWithRelations } from './CompositionSchema'
+import type { CompositionOptionalDefaultsWithRelations } from './CompositionSchema'
 import { PageWithRelationsSchema } from './PageSchema'
 import { PagePartialWithRelationsSchema } from './PageSchema'
 import { PageOptionalDefaultsWithRelationsSchema } from './PageSchema'
+import { CompositionWithRelationsSchema } from './CompositionSchema'
+import { CompositionPartialWithRelationsSchema } from './CompositionSchema'
+import { CompositionOptionalDefaultsWithRelationsSchema } from './CompositionSchema'
 
 /////////////////////////////////////////
 // INGREDIENT SCHEMA
@@ -21,8 +21,10 @@ export const IngredientSchema = z.object({
   amount: z.number(),
   name: z.string(),
   note: z.string().nullable(),
-  compositionId: z.string(),
   pageId: z.string().nullable(),
+  compositionId: z.string(),
+  createdAt: z.coerce.date(),
+  updatedAt: z.coerce.date(),
 })
 
 export type Ingredient = z.infer<typeof IngredientSchema>
@@ -41,6 +43,8 @@ export type IngredientPartial = z.infer<typeof IngredientPartialSchema>
 
 export const IngredientOptionalDefaultsSchema = IngredientSchema.merge(z.object({
   id: z.string().cuid().optional(),
+  createdAt: z.coerce.date().optional(),
+  updatedAt: z.coerce.date().optional(),
 }))
 
 export type IngredientOptionalDefaults = z.infer<typeof IngredientOptionalDefaultsSchema>
@@ -50,15 +54,15 @@ export type IngredientOptionalDefaults = z.infer<typeof IngredientOptionalDefaul
 /////////////////////////////////////////
 
 export type IngredientRelations = {
-  composition: CompositionWithRelations;
   page?: PageWithRelations | null;
+  composition: CompositionWithRelations;
 };
 
 export type IngredientWithRelations = z.infer<typeof IngredientSchema> & IngredientRelations
 
 export const IngredientWithRelationsSchema: z.ZodType<IngredientWithRelations> = IngredientSchema.merge(z.object({
-  composition: z.lazy(() => CompositionWithRelationsSchema),
   page: z.lazy(() => PageWithRelationsSchema).nullable(),
+  composition: z.lazy(() => CompositionWithRelationsSchema),
 }))
 
 /////////////////////////////////////////
@@ -66,15 +70,15 @@ export const IngredientWithRelationsSchema: z.ZodType<IngredientWithRelations> =
 /////////////////////////////////////////
 
 export type IngredientOptionalDefaultsRelations = {
-  composition: CompositionOptionalDefaultsWithRelations;
   page?: PageOptionalDefaultsWithRelations | null;
+  composition: CompositionOptionalDefaultsWithRelations;
 };
 
 export type IngredientOptionalDefaultsWithRelations = z.infer<typeof IngredientOptionalDefaultsSchema> & IngredientOptionalDefaultsRelations
 
 export const IngredientOptionalDefaultsWithRelationsSchema: z.ZodType<IngredientOptionalDefaultsWithRelations> = IngredientOptionalDefaultsSchema.merge(z.object({
-  composition: z.lazy(() => CompositionOptionalDefaultsWithRelationsSchema),
   page: z.lazy(() => PageOptionalDefaultsWithRelationsSchema).nullable(),
+  composition: z.lazy(() => CompositionOptionalDefaultsWithRelationsSchema),
 }))
 
 /////////////////////////////////////////
@@ -82,29 +86,29 @@ export const IngredientOptionalDefaultsWithRelationsSchema: z.ZodType<Ingredient
 /////////////////////////////////////////
 
 export type IngredientPartialRelations = {
-  composition?: CompositionPartialWithRelations;
   page?: PagePartialWithRelations | null;
+  composition?: CompositionPartialWithRelations;
 };
 
 export type IngredientPartialWithRelations = z.infer<typeof IngredientPartialSchema> & IngredientPartialRelations
 
 export const IngredientPartialWithRelationsSchema: z.ZodType<IngredientPartialWithRelations> = IngredientPartialSchema.merge(z.object({
-  composition: z.lazy(() => CompositionPartialWithRelationsSchema),
   page: z.lazy(() => PagePartialWithRelationsSchema).nullable(),
+  composition: z.lazy(() => CompositionPartialWithRelationsSchema),
 })).partial()
 
 export type IngredientOptionalDefaultsWithPartialRelations = z.infer<typeof IngredientOptionalDefaultsSchema> & IngredientPartialRelations
 
 export const IngredientOptionalDefaultsWithPartialRelationsSchema: z.ZodType<IngredientOptionalDefaultsWithPartialRelations> = IngredientOptionalDefaultsSchema.merge(z.object({
-  composition: z.lazy(() => CompositionPartialWithRelationsSchema),
   page: z.lazy(() => PagePartialWithRelationsSchema).nullable(),
+  composition: z.lazy(() => CompositionPartialWithRelationsSchema),
 }).partial())
 
 export type IngredientWithPartialRelations = z.infer<typeof IngredientSchema> & IngredientPartialRelations
 
 export const IngredientWithPartialRelationsSchema: z.ZodType<IngredientWithPartialRelations> = IngredientSchema.merge(z.object({
-  composition: z.lazy(() => CompositionPartialWithRelationsSchema),
   page: z.lazy(() => PagePartialWithRelationsSchema).nullable(),
+  composition: z.lazy(() => CompositionPartialWithRelationsSchema),
 }).partial())
 
 export default IngredientSchema;

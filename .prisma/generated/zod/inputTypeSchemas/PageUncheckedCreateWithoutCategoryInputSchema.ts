@@ -10,9 +10,9 @@ export const PageUncheckedCreateWithoutCategoryInputSchema: z.ZodType<Prisma.Pag
   slug: z.string(),
   featuredImageId: z.string().optional().nullable(),
   pageContentId: z.string(),
+  userId: z.string().optional().nullable(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  userId: z.string().optional().nullable(),
   chemical: z.lazy(() => ChemicalUncheckedCreateNestedOneWithoutPageInputSchema).optional(),
   ingredients: z.lazy(() => IngredientUncheckedCreateNestedManyWithoutPageInputSchema).optional()
 }).strict();

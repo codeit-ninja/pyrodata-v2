@@ -6,9 +6,10 @@ import { WidgetCreateNestedManyWithoutPageContentInputSchema } from './WidgetCre
 
 export const PageContentCreateInputSchema: z.ZodType<Prisma.PageContentCreateInput> = z.object({
   id: z.string().cuid().optional(),
-  createdAt: z.coerce.date().optional(),
   html: z.string().optional(),
   sidebar: z.boolean().optional(),
+  createdAt: z.coerce.date().optional(),
+  updatedAt: z.coerce.date().optional(),
   page: z.lazy(() => PageCreateNestedManyWithoutContentInputSchema).optional(),
   widgets: z.lazy(() => WidgetCreateNestedManyWithoutPageContentInputSchema).optional()
 }).strict();

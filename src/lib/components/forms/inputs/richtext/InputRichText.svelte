@@ -12,9 +12,9 @@
     type Props = {
         label: string;
         name: string;
-        value: string | null;
+        value?: string | null;
         placeholder?: string;
-        error?: string[];
+        error?: string;
         rest?: any[];
     } & HTMLAttributes<HTMLTextAreaElement>;
     
@@ -45,7 +45,7 @@
                 ListItem,
                 Image
             ],
-            content: "<p>Hello World! 🌍️ </p>",
+            content: '',
             onTransaction: () => {
                 // You probaly think wtf is going here?
                 // Well to make sure .isActive() is working

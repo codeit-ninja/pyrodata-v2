@@ -8,9 +8,9 @@ export const PageCreateManyFeaturedImageInputSchema: z.ZodType<Prisma.PageCreate
   slug: z.string(),
   pageContentId: z.string(),
   categorySlug: z.string().optional().nullable(),
+  userId: z.string().optional().nullable(),
   createdAt: z.coerce.date().optional(),
-  updatedAt: z.coerce.date().optional(),
-  userId: z.string().optional().nullable()
+  updatedAt: z.coerce.date().optional()
 }).strict();
 
 export default PageCreateManyFeaturedImageInputSchema;

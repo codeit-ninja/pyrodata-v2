@@ -7,7 +7,9 @@ export const IngredientCreateManyPageInputSchema: z.ZodType<Prisma.IngredientCre
   amount: z.number(),
   name: z.string(),
   note: z.string().optional().nullable(),
-  compositionId: z.string()
+  compositionId: z.string(),
+  createdAt: z.coerce.date().optional(),
+  updatedAt: z.coerce.date().optional()
 }).strict();
 
 export default IngredientCreateManyPageInputSchema;

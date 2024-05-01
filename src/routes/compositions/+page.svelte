@@ -17,8 +17,10 @@
         const [response, err] = await get('/api/compositions', params);
 
         // @ts-ignore
-        data.compositions = response;
+        //data.compositions = response.data;
     }
+
+    console.log(data)
 </script>
 <div class="page">
     <div class="page--title d-flex align-items-center">
@@ -46,7 +48,7 @@
                     </Collapsible>
                 </div>
                 <div class="mb-3">
-                    <Collapsible title="Contains">
+                    <!-- <Collapsible title="Contains">
                         {#each data.chemicals as chemical}
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value={chemical.id} id={chemical.id} name="contains[]">
@@ -55,44 +57,13 @@
                                 </label>
                             </div>
                         {/each}
-                    </Collapsible>
+                    </Collapsible> -->
                 </div>
             </form>
         </section>
         <section class="flex-grow-1">
             <div class="row g-5">
-                {#each data.compositions as composition}
-                    <div class="col-6">
-                        <div class="card card--composition h-100">
-                            <div class="card-header d-flex align-items-center">
-                                <a href={`/compositions/${composition.name}`}>{ composition.name }</a>
-                                <span class="material-symbols-outlined badge--beginner ms-auto">
-                                    verified_user
-                                </span>
-                                <span class="material-symbols-outlined badge--verified">
-                                    verified_user
-                                </span>
-                            </div>
-                            <div class="card-body flex-grow-1">
-                                {#each composition.ingredients as ingredient}
-                                    <div class="d-flex">
-                                        <div class="card--composition--quantity">{ ingredient.amount }</div>
-                                        <div class="card--composition--ingredient">
-                                            {#if ingredient.page}
-                                                <a href={``}>{ ingredient.name }</a>
-                                            {:else}
-                                                { ingredient.name }
-                                            {/if}
-                                            {#if ingredient.note}
-                                                ({ ingredient.note })
-                                            {/if}
-                                        </div>
-                                    </div>
-                                {/each}
-                            </div>
-                        </div>
-                    </div>
-                {/each}
+                
             </div>
         </section>
     </div>

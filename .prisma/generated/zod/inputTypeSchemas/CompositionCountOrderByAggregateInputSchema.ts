@@ -8,7 +8,10 @@ export const CompositionCountOrderByAggregateInputSchema: z.ZodType<Prisma.Compo
   name: z.lazy(() => SortOrderSchema).optional(),
   description: z.lazy(() => SortOrderSchema).optional(),
   videoId: z.lazy(() => SortOrderSchema).optional(),
-  badges: z.lazy(() => SortOrderSchema).optional()
+  badges: z.lazy(() => SortOrderSchema).optional(),
+  userId: z.lazy(() => SortOrderSchema).optional(),
+  createdAt: z.lazy(() => SortOrderSchema).optional(),
+  updatedAt: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
 export default CompositionCountOrderByAggregateInputSchema;

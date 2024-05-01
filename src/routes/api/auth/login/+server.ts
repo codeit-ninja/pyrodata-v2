@@ -1,77 +1,21 @@
-import { db } from '$lib/db';
 import { validate } from '$lib/request';
+import { login, loginSchema } from '$lib/server/schemas/auth';
 import { json } from '@sveltejs/kit';
-import { compare } from 'bcrypt';
-import { z } from 'zod';
-
-const schema = z.object({
-    username: z.string({ required_error: 'Field is required.' }).min(1, { message: 'Field cannot be empty.' }),
-    password: z.string({ required_error: 'Field is required.' }).min(1, { message: 'Field cannot be empty.' })
-})
 
 export const POST = async ({ request, cookies }) => {
-    const [data, error] = await validate(schema, request)
+    const [data, error] = await validate(loginSchema, request)
 
-    if (error) {
+    if (error || !data) {
         return json(error, { status: 400 });
     }
 
-    const user = await db.user.findFirst({
-        where: {
-            OR: [
-                {
-                    username: {
-                        equals: data.username,
-                        mode: 'insensitive'
-                    }
-                },
-                {
-                    email: {
-                        equals: data.username,
-                        mode: 'insensitive'
-                    }
-                }
-            ]
-        }
-    });
+    const session = await login(data);
 
-    const isValid = await compare(data.password, user?.password ?? '');
-
-    if (!user || !isValid) {
-        return json({ _errors: ['Username or password incorrect'] }, { status: 404 });
+    if (!session) {
+        return json({ message: 'Username or password incorrect.' }, { status: 401 });
     }
 
-    const session = await db.session.upsert({
-        create: {
-            user: {
-                connect: user
-            }
-        },
-        update: {},
-        where: {
-            userId: user.id
-        },
-        include: {
-            user: {
-                select: {
-                    id: true,
-                    email: true,
-                    username: true,
-                    role: true
-                }
-            }
-        }
-    })
-
     cookies.set('session', JSON.stringify( session ), { path: '/' })
-    // if (!result.success) {
-    //     const { username, password } = result.error.format();
-
-    //     return Response.json({
-    //         username: username?._errors,
-    //         password: password?._errors
-    //     }, { status: 400 })
-    // }
 
     return Response.json(session);
 }

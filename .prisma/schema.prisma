@@ -25,9 +25,19 @@ model User {
     email        String        @unique
     role         Role          @default(USER)
     session      Session?
+    tokens       Token[]
     files        File[]
     pages        Page[]
     compositions Composition[]
+    createdAt    DateTime     @default(now())
+    updatedAt    DateTime     @default(now()) @updatedAt
+}
+
+model Token {
+    id      Int     @id @default(autoincrement())
+    token   String  @unique
+    user    User    @relation(fields: [userId], references: [id])
+    userId  String
 }
 
 model Session {
@@ -44,7 +54,7 @@ enum Role {
 
 model File {
     id          String        @id @default(cuid())
-    name        String        @unique
+    location    String
     title       String
     description String?
     mimeType    String?
@@ -53,17 +63,21 @@ model File {
     composition Composition[]
     user        User?         @relation(fields: [userId], references: [id])
     userId      String?
+    createdAt   DateTime     @default(now())
+    updatedAt   DateTime     @default(now()) @updatedAt
 }
 
 model Ingredient {
-    id            String      @id @default(cuid())
+    id            String       @id @default(cuid())
     amount        Float
     name          String
     note          String?
-    composition   Composition @relation(fields: [compositionId], references: [id])
-    compositionId String
-    page          Page?       @relation(fields: [pageId], references: [id])
+    page          Page?        @relation(fields: [pageId], references: [id])
     pageId        String?
+    composition   Composition  @relation(fields: [compositionId], references: [id])
+    compositionId String
+    createdAt     DateTime     @default(now())
+    updatedAt     DateTime     @default(now()) @updatedAt
 }
 
 model Composition {
@@ -77,6 +91,8 @@ model Composition {
     badges      CompositionBadges[]
     submittedBy User?                 @relation(fields: [userId], references: [id])
     userId      String?
+    createdAt       DateTime     @default(now())
+    updatedAt       DateTime     @default(now()) @updatedAt
 }
 
 model CompositionBadge {
@@ -124,12 +140,12 @@ model Page {
     pageContentId   String
     categorySlug    String?
     category        Category?    @relation(fields: [categorySlug], references: [slug])
-    createdAt       DateTime     @default(now())
-    updatedAt       DateTime     @default(now()) @updatedAt
     chemical        Chemical?
     ingredients     Ingredient[]
     user            User?        @relation(fields: [userId], references: [id])
     userId          String?
+    createdAt       DateTime     @default(now())
+    updatedAt       DateTime     @default(now()) @updatedAt
 }
 
 model Category {
@@ -140,11 +156,12 @@ model Category {
 
 model PageContent {
     id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
     html      String   @default("") @db.Text
     page      Page[]
     sidebar   Boolean  @default(false)
     widgets   Widget[]
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now()) @updatedAt
 }
 
 model Widget {

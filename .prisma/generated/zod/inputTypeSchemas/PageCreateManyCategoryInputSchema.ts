@@ -8,9 +8,9 @@ export const PageCreateManyCategoryInputSchema: z.ZodType<Prisma.PageCreateManyC
   slug: z.string(),
   featuredImageId: z.string().optional().nullable(),
   pageContentId: z.string(),
+  userId: z.string().optional().nullable(),
   createdAt: z.coerce.date().optional(),
-  updatedAt: z.coerce.date().optional(),
-  userId: z.string().optional().nullable()
+  updatedAt: z.coerce.date().optional()
 }).strict();
 
 export default PageCreateManyCategoryInputSchema;

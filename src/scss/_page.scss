@@ -6,7 +6,7 @@
     &--title {
         position: relative;
         background-color: $gray-800;
-        padding: 5rem 0 1.5rem 3rem;
+        padding: 5rem 0 1.5rem 1.5rem;
         border-bottom: 1px solid $border-color;
         z-index: 10;
 
@@ -21,6 +21,10 @@
             left: 100%;
             border-bottom: 1px solid $border-color;
         }
+
+        h1 {
+            margin-bottom: 0;
+        }
     }
 
     &--box {
@@ -32,7 +36,7 @@
     
     &--content {
         flex-grow: 1;
-        margin-left: 3rem;
+        margin-left: 1.5rem;
         margin-top: 1.5rem;
         z-index: 55;
 

@@ -5,9 +5,9 @@
     type Props = {
         label: string;
         name: string;
-        value: string | null;
+        value?: string | null;
         placeholder?: string;
-        error?: string[];
+        error?: string;
         rest?: any[];
     } & HTMLInputAttributes;
 

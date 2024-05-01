@@ -30,11 +30,13 @@ import { UserOptionalDefaultsWithRelationsSchema } from './UserSchema'
 
 export const FileSchema = z.object({
   id: z.string().cuid(),
-  name: z.string(),
+  location: z.string(),
   title: z.string(),
   description: z.string().nullable(),
   mimeType: z.string().nullable(),
   userId: z.string().nullable(),
+  createdAt: z.coerce.date(),
+  updatedAt: z.coerce.date(),
 })
 
 export type File = z.infer<typeof FileSchema>
@@ -53,6 +55,8 @@ export type FilePartial = z.infer<typeof FilePartialSchema>
 
 export const FileOptionalDefaultsSchema = FileSchema.merge(z.object({
   id: z.string().cuid().optional(),
+  createdAt: z.coerce.date().optional(),
+  updatedAt: z.coerce.date().optional(),
 }))
 
 export type FileOptionalDefaults = z.infer<typeof FileOptionalDefaultsSchema>

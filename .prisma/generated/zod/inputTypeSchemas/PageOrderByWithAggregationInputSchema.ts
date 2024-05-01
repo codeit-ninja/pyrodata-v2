@@ -14,9 +14,9 @@ export const PageOrderByWithAggregationInputSchema: z.ZodType<Prisma.PageOrderBy
   featuredImageId: z.union([ z.lazy(() => SortOrderSchema),z.lazy(() => SortOrderInputSchema) ]).optional(),
   pageContentId: z.lazy(() => SortOrderSchema).optional(),
   categorySlug: z.union([ z.lazy(() => SortOrderSchema),z.lazy(() => SortOrderInputSchema) ]).optional(),
+  userId: z.union([ z.lazy(() => SortOrderSchema),z.lazy(() => SortOrderInputSchema) ]).optional(),
   createdAt: z.lazy(() => SortOrderSchema).optional(),
   updatedAt: z.lazy(() => SortOrderSchema).optional(),
-  userId: z.union([ z.lazy(() => SortOrderSchema),z.lazy(() => SortOrderInputSchema) ]).optional(),
   _count: z.lazy(() => PageCountOrderByAggregateInputSchema).optional(),
   _max: z.lazy(() => PageMaxOrderByAggregateInputSchema).optional(),
   _min: z.lazy(() => PageMinOrderByAggregateInputSchema).optional()

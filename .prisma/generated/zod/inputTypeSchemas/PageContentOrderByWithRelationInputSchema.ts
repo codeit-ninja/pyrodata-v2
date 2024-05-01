@@ -7,9 +7,10 @@ import { WidgetOrderByRelationAggregateInputSchema } from './WidgetOrderByRelati
 
 export const PageContentOrderByWithRelationInputSchema: z.ZodType<Prisma.PageContentOrderByWithRelationInput> = z.object({
   id: z.lazy(() => SortOrderSchema).optional(),
-  createdAt: z.lazy(() => SortOrderSchema).optional(),
   html: z.lazy(() => SortOrderSchema).optional(),
   sidebar: z.lazy(() => SortOrderSchema).optional(),
+  createdAt: z.lazy(() => SortOrderSchema).optional(),
+  updatedAt: z.lazy(() => SortOrderSchema).optional(),
   page: z.lazy(() => PageOrderByRelationAggregateInputSchema).optional(),
   widgets: z.lazy(() => WidgetOrderByRelationAggregateInputSchema).optional()
 }).strict();

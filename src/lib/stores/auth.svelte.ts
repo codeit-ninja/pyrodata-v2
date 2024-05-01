@@ -10,8 +10,8 @@ const createAuthStore = () => {
         set session(data: App.Locals['session']) {
             session = data;
         },
-        login: async (username: string, password: string) => {
-            return await post('/api/auth/login', { username, password })
+        login: async (formData: FormData) => {
+            return await post('/api/auth/login', formData)
         },
         logout: async () => {
 

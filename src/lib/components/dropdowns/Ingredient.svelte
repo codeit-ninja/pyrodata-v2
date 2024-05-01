@@ -1,28 +1,28 @@
 <script lang="ts">
     import { get } from "$lib/fetch";
-    import type { Page } from "@prisma/client";
+    import type { PageOptionalDefaultsWithRelations } from "$prisma/zod";
     import type { Dropdown } from "bootstrap";
     import { debounce } from "lodash-es";
     import { onMount } from "svelte";
 
     type Props = {
         value: string;
-        onselect?: ( page: Page ) => void;
+        onselect?: ( page: PageOptionalDefaultsWithRelations ) => void;
     }
 
     let dropdownElement = $state<HTMLDivElement>();
     let dropdown = $state<Dropdown>();
-    let pages = $state<Page[]>([]);
+    let pages = $state<PageOptionalDefaultsWithRelations[]>([]);
 
     let { value = $bindable(), onselect }: Props = $props();
 
     const search = debounce( async () => {
-        const [response, err] = await get<Page[]>('/api/pages', { q: value, limit: 5 });
+        const [response, err] = await get<PageOptionalDefaultsWithRelations[]>('/api/pages', { q: value, limit: 5 });
 
         pages = response;
     }, 150);
 
-    const select = (page: Page) => {
+    const select = (page: PageOptionalDefaultsWithRelations) => {
         if (onselect) {
             onselect(page);
         }

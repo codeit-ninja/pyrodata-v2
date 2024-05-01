@@ -7,7 +7,10 @@ export const CompositionMinOrderByAggregateInputSchema: z.ZodType<Prisma.Composi
   id: z.lazy(() => SortOrderSchema).optional(),
   name: z.lazy(() => SortOrderSchema).optional(),
   description: z.lazy(() => SortOrderSchema).optional(),
-  videoId: z.lazy(() => SortOrderSchema).optional()
+  videoId: z.lazy(() => SortOrderSchema).optional(),
+  userId: z.lazy(() => SortOrderSchema).optional(),
+  createdAt: z.lazy(() => SortOrderSchema).optional(),
+  updatedAt: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
 export default CompositionMinOrderByAggregateInputSchema;

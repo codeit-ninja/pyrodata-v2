@@ -18,9 +18,10 @@ import { WidgetOptionalDefaultsWithRelationsSchema } from './WidgetSchema'
 
 export const PageContentSchema = z.object({
   id: z.string().cuid(),
-  createdAt: z.coerce.date(),
   html: z.string(),
   sidebar: z.boolean(),
+  createdAt: z.coerce.date(),
+  updatedAt: z.coerce.date(),
 })
 
 export type PageContent = z.infer<typeof PageContentSchema>
@@ -39,9 +40,10 @@ export type PageContentPartial = z.infer<typeof PageContentPartialSchema>
 
 export const PageContentOptionalDefaultsSchema = PageContentSchema.merge(z.object({
   id: z.string().cuid().optional(),
-  createdAt: z.coerce.date().optional(),
   html: z.string().optional(),
   sidebar: z.boolean().optional(),
+  createdAt: z.coerce.date().optional(),
+  updatedAt: z.coerce.date().optional(),
 }))
 
 export type PageContentOptionalDefaults = z.infer<typeof PageContentOptionalDefaultsSchema>

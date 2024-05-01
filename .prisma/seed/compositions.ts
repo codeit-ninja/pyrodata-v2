@@ -81,9 +81,15 @@ async function importCompositions() {
             },
             ingredients: {
                 create: ingredients
+            },
+            submittedBy: {
+                connect: {
+                    id: 'clvgptwsx0000oubjdii7vbr0'
+                }
             }
         }
-        
+
+        //await prisma.composition.deleteMany();
         await prisma.composition.upsert({
             create: reciepe,
             update: reciepe,

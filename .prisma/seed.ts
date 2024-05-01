@@ -55,10 +55,20 @@ async function main() {
     await prisma.user.deleteMany();
     await prisma.user.create({
         data: {
+            id: 'clvgptwsx0000oubjdii7vbr0',
             email: 'richard@codeit.ninja',
             username: 'Red',
             password: hashSync('Creative12!@', 10),
             role: 'ADMIN'
+        }
+    })
+    await prisma.user.create({
+        data: {
+            id: 'clvgptwsx0410oubsdii7vbr1',
+            email: 'noreply@codeit.ninja',
+            username: 'Pyrodata',
+            password: hashSync('V`Sp£I#37L*~ik=x-\'1MpvZ=^|4(N', 10),
+            role: 'USER'
         }
     })
 }

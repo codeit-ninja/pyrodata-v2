@@ -1,10 +1,19 @@
-import { CompositionOptionalDefaultsWithRelationsSchema } from '$prisma/zod';
-import { superValidate } from 'sveltekit-superforms';
-import { zod } from 'sveltekit-superforms/adapters';
-import { z } from 'zod';
+import { fail } from '@sveltejs/kit';
 
-export const load = async () => {
-    const form = await superValidate(zod(CompositionOptionalDefaultsWithRelationsSchema));
+export const actions = {
+    default: async ({ request, fetch }) => {
+        const response = await fetch('/api/compositions', request)
 
-    return { form }
+        if (!response.ok) {
+            return fail(response.status, {
+                success: false,
+                error: await response.json()
+            });
+        }
+
+        return {
+            success: true,
+            data: await response.json()
+        }
+    }
 }

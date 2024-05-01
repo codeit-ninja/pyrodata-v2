@@ -12,11 +12,13 @@ import { FileCountOutputTypeArgsSchema } from "../outputTypeSchemas/FileCountOut
 
 export const FileSelectSchema: z.ZodType<Prisma.FileSelect> = z.object({
   id: z.boolean().optional(),
-  name: z.boolean().optional(),
+  location: z.boolean().optional(),
   title: z.boolean().optional(),
   description: z.boolean().optional(),
   mimeType: z.boolean().optional(),
   userId: z.boolean().optional(),
+  createdAt: z.boolean().optional(),
+  updatedAt: z.boolean().optional(),
   imageWidget: z.union([z.boolean(),z.lazy(() => ImageWidgetFindManyArgsSchema)]).optional(),
   page: z.union([z.boolean(),z.lazy(() => PageFindManyArgsSchema)]).optional(),
   composition: z.union([z.boolean(),z.lazy(() => CompositionFindManyArgsSchema)]).optional(),

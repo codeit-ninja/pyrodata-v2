@@ -7,8 +7,10 @@ export const IngredientUncheckedCreateInputSchema: z.ZodType<Prisma.IngredientUn
   amount: z.number(),
   name: z.string(),
   note: z.string().optional().nullable(),
+  pageId: z.string().optional().nullable(),
   compositionId: z.string(),
-  pageId: z.string().optional().nullable()
+  createdAt: z.coerce.date().optional(),
+  updatedAt: z.coerce.date().optional()
 }).strict();
 
 export default IngredientUncheckedCreateInputSchema;

@@ -5,10 +5,13 @@ import { UserWhereInputSchema } from './UserWhereInputSchema';
 import { StringFilterSchema } from './StringFilterSchema';
 import { EnumRoleFilterSchema } from './EnumRoleFilterSchema';
 import { RoleSchema } from './RoleSchema';
+import { DateTimeFilterSchema } from './DateTimeFilterSchema';
 import { SessionNullableRelationFilterSchema } from './SessionNullableRelationFilterSchema';
 import { SessionWhereInputSchema } from './SessionWhereInputSchema';
+import { TokenListRelationFilterSchema } from './TokenListRelationFilterSchema';
 import { FileListRelationFilterSchema } from './FileListRelationFilterSchema';
 import { PageListRelationFilterSchema } from './PageListRelationFilterSchema';
+import { CompositionListRelationFilterSchema } from './CompositionListRelationFilterSchema';
 
 export const UserWhereUniqueInputSchema: z.ZodType<Prisma.UserWhereUniqueInput> = z.union([
   z.object({
@@ -47,9 +50,13 @@ export const UserWhereUniqueInputSchema: z.ZodType<Prisma.UserWhereUniqueInput> 
   NOT: z.union([ z.lazy(() => UserWhereInputSchema),z.lazy(() => UserWhereInputSchema).array() ]).optional(),
   password: z.union([ z.lazy(() => StringFilterSchema),z.string() ]).optional(),
   role: z.union([ z.lazy(() => EnumRoleFilterSchema),z.lazy(() => RoleSchema) ]).optional(),
+  createdAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
+  updatedAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
   session: z.union([ z.lazy(() => SessionNullableRelationFilterSchema),z.lazy(() => SessionWhereInputSchema) ]).optional().nullable(),
+  tokens: z.lazy(() => TokenListRelationFilterSchema).optional(),
   files: z.lazy(() => FileListRelationFilterSchema).optional(),
-  pages: z.lazy(() => PageListRelationFilterSchema).optional()
+  pages: z.lazy(() => PageListRelationFilterSchema).optional(),
+  compositions: z.lazy(() => CompositionListRelationFilterSchema).optional()
 }).strict());
 
 export default UserWhereUniqueInputSchema;

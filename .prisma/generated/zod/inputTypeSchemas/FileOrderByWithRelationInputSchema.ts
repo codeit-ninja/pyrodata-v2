@@ -10,11 +10,13 @@ import { UserOrderByWithRelationInputSchema } from './UserOrderByWithRelationInp
 
 export const FileOrderByWithRelationInputSchema: z.ZodType<Prisma.FileOrderByWithRelationInput> = z.object({
   id: z.lazy(() => SortOrderSchema).optional(),
-  name: z.lazy(() => SortOrderSchema).optional(),
+  location: z.lazy(() => SortOrderSchema).optional(),
   title: z.lazy(() => SortOrderSchema).optional(),
   description: z.union([ z.lazy(() => SortOrderSchema),z.lazy(() => SortOrderInputSchema) ]).optional(),
   mimeType: z.union([ z.lazy(() => SortOrderSchema),z.lazy(() => SortOrderInputSchema) ]).optional(),
   userId: z.union([ z.lazy(() => SortOrderSchema),z.lazy(() => SortOrderInputSchema) ]).optional(),
+  createdAt: z.lazy(() => SortOrderSchema).optional(),
+  updatedAt: z.lazy(() => SortOrderSchema).optional(),
   imageWidget: z.lazy(() => ImageWidgetOrderByRelationAggregateInputSchema).optional(),
   page: z.lazy(() => PageOrderByRelationAggregateInputSchema).optional(),
   composition: z.lazy(() => CompositionOrderByRelationAggregateInputSchema).optional(),

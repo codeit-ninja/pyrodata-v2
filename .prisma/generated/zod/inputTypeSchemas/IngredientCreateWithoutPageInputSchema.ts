@@ -8,6 +8,8 @@ export const IngredientCreateWithoutPageInputSchema: z.ZodType<Prisma.Ingredient
   amount: z.number(),
   name: z.string(),
   note: z.string().optional().nullable(),
+  createdAt: z.coerce.date().optional(),
+  updatedAt: z.coerce.date().optional(),
   composition: z.lazy(() => CompositionCreateNestedOneWithoutIngredientsInputSchema)
 }).strict();
 

@@ -83,26 +83,6 @@ for await( const element of chemicalElements ) {
         const image = await axios.get(chemical.image, { responseType: 'arraybuffer' });
         const path = `/home/codeit/pyrodata-v2/static/uploads/${chemical.slug}.jpg`;
 
-        await Bun.write(path, image.data);
-
-        const file = await prisma.file.upsert({
-            create: {
-                name: `${chemical.slug}.jpg`,
-                description: '',
-                title: chemical.name,
-                mimeType: mime.getType(path)
-            },
-            update: {
-                name: `${chemical.slug}.jpg`,
-                description: '',
-                title: chemical.name,
-                mimeType: mime.getType(path)
-            },
-            where: {
-                name: `${chemical.slug}.jpg`
-            }
-        })
-
         await prisma.chemical.upsert({
             create: {
                 formula: chemical.formula,
@@ -111,9 +91,6 @@ for await( const element of chemicalElements ) {
                     create: {
                         slug: chemical.slug,
                         title: chemical.name,
-                        featuredImage: {
-                            connect: file
-                        },
                         content: {
                             create: {
                                 html: chemical.description
@@ -129,9 +106,6 @@ for await( const element of chemicalElements ) {
                     update: {
                         slug: chemical.slug,
                         title: chemical.name,
-                        featuredImage: {
-                            connect: file
-                        },
                         content: {
                             create: {
                                 html: chemical.description

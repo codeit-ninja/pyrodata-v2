@@ -8,7 +8,9 @@ export const UserCreateManyInputSchema: z.ZodType<Prisma.UserCreateManyInput> = 
   username: z.string(),
   password: z.string(),
   email: z.string(),
-  role: z.lazy(() => RoleSchema).optional()
+  role: z.lazy(() => RoleSchema).optional(),
+  createdAt: z.coerce.date().optional(),
+  updatedAt: z.coerce.date().optional()
 }).strict();
 
 export default UserCreateManyInputSchema;

@@ -4,10 +4,13 @@ import { z } from 'zod';
 import { CompositionWhereInputSchema } from './CompositionWhereInputSchema';
 import { StringNullableFilterSchema } from './StringNullableFilterSchema';
 import { EnumCompositionBadgesNullableListFilterSchema } from './EnumCompositionBadgesNullableListFilterSchema';
+import { DateTimeFilterSchema } from './DateTimeFilterSchema';
 import { FileNullableRelationFilterSchema } from './FileNullableRelationFilterSchema';
 import { FileWhereInputSchema } from './FileWhereInputSchema';
 import { IngredientListRelationFilterSchema } from './IngredientListRelationFilterSchema';
 import { CompositionCategoryListRelationFilterSchema } from './CompositionCategoryListRelationFilterSchema';
+import { UserNullableRelationFilterSchema } from './UserNullableRelationFilterSchema';
+import { UserWhereInputSchema } from './UserWhereInputSchema';
 
 export const CompositionWhereUniqueInputSchema: z.ZodType<Prisma.CompositionWhereUniqueInput> = z.union([
   z.object({
@@ -30,9 +33,13 @@ export const CompositionWhereUniqueInputSchema: z.ZodType<Prisma.CompositionWher
   description: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
   videoId: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
   badges: z.lazy(() => EnumCompositionBadgesNullableListFilterSchema).optional(),
+  userId: z.union([ z.lazy(() => StringNullableFilterSchema),z.string() ]).optional().nullable(),
+  createdAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
+  updatedAt: z.union([ z.lazy(() => DateTimeFilterSchema),z.coerce.date() ]).optional(),
   video: z.union([ z.lazy(() => FileNullableRelationFilterSchema),z.lazy(() => FileWhereInputSchema) ]).optional().nullable(),
   ingredients: z.lazy(() => IngredientListRelationFilterSchema).optional(),
-  categories: z.lazy(() => CompositionCategoryListRelationFilterSchema).optional()
+  categories: z.lazy(() => CompositionCategoryListRelationFilterSchema).optional(),
+  submittedBy: z.union([ z.lazy(() => UserNullableRelationFilterSchema),z.lazy(() => UserWhereInputSchema) ]).optional().nullable(),
 }).strict());
 
 export default CompositionWhereUniqueInputSchema;

@@ -13,6 +13,9 @@ export const CompositionOrderByWithAggregationInputSchema: z.ZodType<Prisma.Comp
   description: z.union([ z.lazy(() => SortOrderSchema),z.lazy(() => SortOrderInputSchema) ]).optional(),
   videoId: z.union([ z.lazy(() => SortOrderSchema),z.lazy(() => SortOrderInputSchema) ]).optional(),
   badges: z.lazy(() => SortOrderSchema).optional(),
+  userId: z.union([ z.lazy(() => SortOrderSchema),z.lazy(() => SortOrderInputSchema) ]).optional(),
+  createdAt: z.lazy(() => SortOrderSchema).optional(),
+  updatedAt: z.lazy(() => SortOrderSchema).optional(),
   _count: z.lazy(() => CompositionCountOrderByAggregateInputSchema).optional(),
   _max: z.lazy(() => CompositionMaxOrderByAggregateInputSchema).optional(),
   _min: z.lazy(() => CompositionMinOrderByAggregateInputSchema).optional()

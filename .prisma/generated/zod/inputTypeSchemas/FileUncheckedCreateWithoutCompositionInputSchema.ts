@@ -6,11 +6,13 @@ import { PageUncheckedCreateNestedManyWithoutFeaturedImageInputSchema } from './
 
 export const FileUncheckedCreateWithoutCompositionInputSchema: z.ZodType<Prisma.FileUncheckedCreateWithoutCompositionInput> = z.object({
   id: z.string().cuid().optional(),
-  name: z.string(),
+  location: z.string(),
   title: z.string(),
   description: z.string().optional().nullable(),
   mimeType: z.string().optional().nullable(),
   userId: z.string().optional().nullable(),
+  createdAt: z.coerce.date().optional(),
+  updatedAt: z.coerce.date().optional(),
   imageWidget: z.lazy(() => ImageWidgetUncheckedCreateNestedManyWithoutFileInputSchema).optional(),
   page: z.lazy(() => PageUncheckedCreateNestedManyWithoutFeaturedImageInputSchema).optional()
 }).strict();

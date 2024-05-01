@@ -8,8 +8,10 @@ export const IngredientMinOrderByAggregateInputSchema: z.ZodType<Prisma.Ingredie
   amount: z.lazy(() => SortOrderSchema).optional(),
   name: z.lazy(() => SortOrderSchema).optional(),
   note: z.lazy(() => SortOrderSchema).optional(),
+  pageId: z.lazy(() => SortOrderSchema).optional(),
   compositionId: z.lazy(() => SortOrderSchema).optional(),
-  pageId: z.lazy(() => SortOrderSchema).optional()
+  createdAt: z.lazy(() => SortOrderSchema).optional(),
+  updatedAt: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
 export default IngredientMinOrderByAggregateInputSchema;

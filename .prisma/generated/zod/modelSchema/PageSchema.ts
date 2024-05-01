@@ -47,9 +47,9 @@ export const PageSchema = z.object({
   featuredImageId: z.string().nullable(),
   pageContentId: z.string(),
   categorySlug: z.string().nullable(),
+  userId: z.string().nullable(),
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date(),
-  userId: z.string().nullable(),
 })
 
 export type Page = z.infer<typeof PageSchema>

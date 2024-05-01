@@ -11,9 +11,9 @@ export const PageUncheckedCreateInputSchema: z.ZodType<Prisma.PageUncheckedCreat
   featuredImageId: z.string().optional().nullable(),
   pageContentId: z.string(),
   categorySlug: z.string().optional().nullable(),
+  userId: z.string().optional().nullable(),
   createdAt: z.coerce.date().optional(),
   updatedAt: z.coerce.date().optional(),
-  userId: z.string().optional().nullable(),
   chemical: z.lazy(() => ChemicalUncheckedCreateNestedOneWithoutPageInputSchema).optional(),
   ingredients: z.lazy(() => IngredientUncheckedCreateNestedManyWithoutPageInputSchema).optional()
 }).strict();

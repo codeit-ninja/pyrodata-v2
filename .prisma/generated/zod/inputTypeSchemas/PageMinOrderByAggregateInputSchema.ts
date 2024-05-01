@@ -10,9 +10,9 @@ export const PageMinOrderByAggregateInputSchema: z.ZodType<Prisma.PageMinOrderBy
   featuredImageId: z.lazy(() => SortOrderSchema).optional(),
   pageContentId: z.lazy(() => SortOrderSchema).optional(),
   categorySlug: z.lazy(() => SortOrderSchema).optional(),
+  userId: z.lazy(() => SortOrderSchema).optional(),
   createdAt: z.lazy(() => SortOrderSchema).optional(),
-  updatedAt: z.lazy(() => SortOrderSchema).optional(),
-  userId: z.lazy(() => SortOrderSchema).optional()
+  updatedAt: z.lazy(() => SortOrderSchema).optional()
 }).strict();
 
 export default PageMinOrderByAggregateInputSchema;

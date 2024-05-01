@@ -1,35 +1,77 @@
-import type { z, ZodFormattedError, ZodSchema } from "zod";
-import { isInteger, mapValues, omit, toInteger, toNumber } from 'lodash-es';
+import { isArray, isInteger, mapValues, set, toInteger, toNumber } from 'lodash-es';
+import vine, { errors as VineErrors, type VineValidator } from "@vinejs/vine";
+import type { InferInput, Infer, SchemaTypes } from "@vinejs/vine/types";
+import { normalizeValue } from './utils';
 
-export const validate = async <T extends Record<string, any>>(schema: ZodSchema<T>, request: Request): Promise<[T, Omit<ZodFormattedError<T>, '_errors'> | null]> => {
-    const data = await request.json() as T;
-    const result = schema.safeParse(data);
+export type ValidateReturnType<T extends SchemaTypes, Schema = Infer<T>> = [
+    Schema | null,
+    ValidateErrors<T> | null
+]
 
-    if (!result.success) {
-        const formatted = result.error.format()
+export type ValidateErrors<T extends SchemaTypes, Schema = Infer<T>> = {
+    [key in keyof Schema]: {
+        message: string;
+        rule: string;
+        field: string;
+        meta: Record<string, any>;
+    }
+}
 
-        return [data, omit(formatted, '_errors')];
+export const validate = async <T extends SchemaTypes>(
+    schema: T, 
+    request: Request
+): Promise<ValidateReturnType<T>> => {
+    let data: T | null = null;
+    let errors: ValidateErrors<T> | null = null;
+    
+    const validator = vine.compile(schema);
+    const formDataObject = await request.formData();
+    const formDataParsed = formData<Infer<typeof schema>>(formDataObject);
+    
+    try {
+        data = await validator.validate(formDataParsed);
+        errors = null;
+    } catch(error) {
+        if (error instanceof VineErrors.E_VALIDATION_ERROR) {
+            if (error?.messages) {
+                errors = {} as ValidateErrors<T>;
+                
+                for (const err of error.messages) {
+                    errors[err.field as keyof Infer<typeof schema>] = err;
+                }
+            }
+        }
+        
+        data = null;
     }
 
-    return [data, null];
+    return [data, errors];
 }
+  
 
 export const getSearchParams = <T extends Record<string, any>>( url: URL ) => {
     const searchParams = Object.fromEntries(url.searchParams.entries());
 
-    return mapValues(searchParams, (value) => {
-        if (!isNaN(Number(value)) && value !== '') {
-            if (isInteger(toNumber(value))) {
-                return toInteger(value);
-            } else {
-                return toNumber(value);
-            }
-        } else if (value.toLowerCase() === 'true') {
-            return true;
-        } else if (value.toLowerCase() === 'false') {
-            return false;
-        } else {
-            return value;
+    return mapValues(searchParams, normalizeValue) as { [K in keyof T]: T[K] extends string ? any : T[K] };
+}
+
+export const formData = <T>(formData: FormData): T => {
+    const root = {};
+
+    for (let [path, value] of formData) {
+        /**
+         * Account for path that represents array
+         * Eg: badges[]
+         * 
+         * Update path with an index
+         * Eg: badges[0]
+         */
+        if (path.endsWith('[]')) {
+            path = path.replace('[]', `[${formData.getAll(path).findIndex(i => i === value)}]`)
         }
-    }) as { [K in keyof T]: T[K] extends string ? any : T[K] };
+        
+        set(root, path, normalizeValue(value));
+    }
+    
+    return root as T;
 }

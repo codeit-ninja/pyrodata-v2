@@ -1,12 +1,4 @@
-import type { Handle } from '@sveltejs/kit';
+import { auth } from '$lib/middleware/auth';
+import { sequence } from '@sveltejs/kit/hooks';
 
-export const handle: Handle = async ({ event, resolve }) => {
-    const session = event.cookies.get('session');
-
-    if( session ) {
-        event.locals.session = JSON.parse(session);
-    }
-    
-	const response = await resolve(event);
-	return response;
-};
+export const handle = sequence(auth)
